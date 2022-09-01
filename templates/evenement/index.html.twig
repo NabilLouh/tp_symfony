@@ -23,7 +23,7 @@
                         {% if date() <  evenement.getDatedebut() %}
                             <button class="btn btn-success">A venir</button>
 
-                        {% elseif date >= evenement.getDatefin() %}
+                        {% elseif date() >= evenement.getDatefin() %}
                             <button class="btn btn-danger">Passer</button>
                         {% else %}
                             <button class="btn btn-warning">En Cour</button>
