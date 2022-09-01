@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Evenement;
+use App\Form\EvenementType;
 use App\Repository\EvenementRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,6 +26,27 @@ class EvenementController extends AbstractController
         ]);
     }
 
+
+    #[Route('/evenement/create', name: 'app_evenement_create')]
+    public function create(Request $request, ManagerRegistry $doctrine, EntityManagerInterface $manager)
+    {
+        $evenement = new Evenement();
+        $form = $this->createForm(EvenementType::class, $evenement);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($evenement);
+            $manager->flush();
+
+            $this->addFlash('success', $evenement->getName().' a été créé.');
+
+            return $this->redirectToRoute('app_evenement');
+        }
+        return $this->render('evenement/create.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
     #[Route('/evenement/{id}', name: 'app_evenement_show')]
     public function show(EvenementRepository $repository, Evenement $evenement)
     {
@@ -32,9 +55,5 @@ class EvenementController extends AbstractController
         ]);
     }
 
-    #[Route('/evenement/create', name: 'app_evenement_create')]
-    public function create()
-    {
-        return $this->render('evenement/create.html.twig');
-    }
+    
 }

@@ -30,13 +30,13 @@
                         <li {% if route_name == "home" %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
                             <a class="nav-link" href="{{ path('home') }}">Accueil</a>
                         </li>
-                        <li {% if route_name == "home" %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
+                        <li {% if route_name == "app_evenement" %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
                             <a class="nav-link" href="{{ path('app_evenement') }}">Evenement</a>
                         </li>
-                        <li {% if route_name == "home" %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
+                        <li {% if route_name == "app_evenement_create" %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
                             <a class="nav-link" href="{{ path('app_evenement_create') }}">Creer un événement</a>
                         </li>
-                        <li {% if route_name == "home" %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
+                        <li {% if route_name == "hello" %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
                             <a class="nav-link" href="{{ path('hello') }}">Hello</a>
                         </li>
                     </ul>
