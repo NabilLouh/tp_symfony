@@ -2,4 +2,10 @@
 
 {% block body %}
     <h1>{{ evenement.name }}</h1>
+
+    <h1>{{evenement.price}} €</h1>
+
+    <p>Du {{evenement.getDatedebut() | date('d-m-Y')}} au {{evenement.getDatedebut() | date('d-m-Y')}}</p>
+
+
 {% endblock %}
